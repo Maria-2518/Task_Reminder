@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Home</h2>
+<a href="{{ url_for('add_task') }}">Add Task</a>
+<a href="{{ url_for('show_tasks') }}">Show Tasks</a>
+<ul>
+    {% for task in tasks %}
+    <li>
+        {{ task.task }} - Due: {{ task.due_time.strftime("%Y-%m-%d %H:%M") }}
+        <a href="{{ url_for('update_task', task_name=task.task) }}">Update Status</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
