@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Update Task Status</h2>
+<form method="POST">
+    <label for="new_status">New Status:</label>
+    <select id="new_status" name="new_status">
+        <option value="Not Started">Not Started</option>
+        <option value="In Progress">In Progress</option>
+        <option value="Completed">Completed</option>
+    </select><br>
+    <button type="submit">Update</button>
+</form>
+<a href="{{ url_for('index') }}">Back to Home</a>
+{% endblock %}
