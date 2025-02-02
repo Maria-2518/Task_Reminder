@@ -64,15 +64,7 @@ For Software:
 ![Workflow](Add your workflow/architecture diagram here)
 *Add caption explaining your workflow*
 
-For Hardware:
 
-# Schematic & Circuit
-![Circuit](Add your circuit diagram here)
-*Add caption explaining connections*
-
-![Schematic](Add your schematic diagr![Home Page](https://github.com/user-attachments/assets/66f8ad23-9794-4fb3-932c-5c87742e7763)
-am here)
-*Add caption explaining the schematic*
 
 # Build Photos
 ![Team](Add photo of your team here)
