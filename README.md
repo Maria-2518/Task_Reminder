@@ -18,7 +18,7 @@ https://github.com/Maria-2518/Task_Reminder/blob/09c04fd025f2445f2e18b7799947c19
 Our project helps the user to remind different tasks that the person need to complete in certain days.
 
 ### The Problem statement
-In this current scenerio, people face difficulties to remember different deadlines where our task reminder helps to organize and prioritize tasks.
+In this current scenario, people face difficulties to remember different deadlines where our task reminder helps to organize and prioritize tasks.
 
 ### The Solution
 We planned to solve this problem systematically by giving timely notifications and  prioritize tasks according to the mood of the user .  
