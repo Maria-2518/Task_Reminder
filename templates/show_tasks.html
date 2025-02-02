@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Tasks</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #dfc9d2;
+            color: #060b00;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            background-color: rgba(227, 175, 149, 0.501);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 50px auto;
+            width: 80%;
+            max-width: 600px;
+        }
+        input, button {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Your Tasks</h2>
+        <form method="POST">
+            <label for="mood">How are you feeling today?</label>
+            <input type="text" id="mood" name="mood" placeholder="happy, stressed, relaxed, etc." required>
+            <button type="submit">Sort Tasks</button>
+        </form>
+        <ul>
+            {% for task in tasks %}
+            <li>
+                {{ task.task }} - Priority: {{ task.priority }}, Status: {{ task.status }}
+            </li>
+            {% endfor %}
+        </ul>
+        <a href="/">Back to Home</a>
+    </div>
+</body>
+</html>

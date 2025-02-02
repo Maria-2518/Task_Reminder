@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8dddd; /* Fallback color */
+            color: #de0f0f;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            background-color: rgba(230, 169, 115, 0.537);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 50px auto;
+            width: 80%;
+            max-width: 600px;
+        }
+        h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        a {
+            color: #00bfff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #fff;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Home</h2>
+        <a href="{{ url_for('add_task') }}">Add Task</a>
+        <a href="{{ url_for('show_tasks') }}">Show Tasks</a>
+        <ul>
+            {% for task in tasks %}
+            <li>
+                {{ task.task }} - Due: {{ task.due_time.strftime("%Y-%m-%d %H:%M") }}
+                <ul>
+                    {% for suggestion in task.suggestions %}
+                    <li><small>{{ suggestion }}</small></li>
+                    {% endfor %}
+                </ul>
+                <a href="{{ url_for('update_task', task_id=task.id) }}">Update Status</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

@@ -19,21 +19,17 @@ def analyze_task_description(task_name):
         suggestions.append("Prioritize this task as it is urgent")
     return suggestions
 
+# Helper function to find a task by ID
+def find_task_by_id(task_id):
+    for task in tasks:
+        if task["id"] == task_id:
+            return task
+    return None
+
 # Route: Home Page
 @app.route("/", methods=["GET"])
 def index():
-    # Generate HTML dynamically
-    task_list = "<ul>"
-    for task in tasks:
-        task_list += f"<li>{task['task']} - Due: {task['due_time'].strftime('%Y-%m-%d %H:%M')} <a href='{url_for('update_task', task_name=task['task'])}'>Update Status</a></li>"
-    task_list += "</ul>"
-
-    return f"""
-    <h2>Home</h2>
-    <a href="{url_for('add_task')}">Add Task</a>
-    <a href="{url_for('show_tasks')}">Show Tasks</a>
-    {task_list}
-    """
+    return render_template("index.html", tasks=tasks)
 
 # Route: Add Task
 @app.route("/add_task", methods=["GET", "POST"])
@@ -42,12 +38,17 @@ def add_task():
         task_name = request.form["task_name"]
         due_time_str = request.form["due_time"]
         priority = int(request.form["priority"])
-        due_time = datetime.strptime(due_time_str, "%Y-%m-%d %H:%M")
+
+        try:
+            due_time = datetime.strptime(due_time_str, "%Y-%m-%d %H:%M")
+        except ValueError:
+            return "Invalid date format. Please use YYYY-MM-DD HH:MM."
+
         suggestions = analyze_task_description(task_name)
         tasks.append({
+            "id": len(tasks) + 1,
             "task": task_name,
             "due_time": due_time,
-            "reminded": False,
             "priority": priority,
             "status": "Not Started",
             "suggestions": suggestions
@@ -55,73 +56,31 @@ def add_task():
         return redirect(url_for("index"))
     
     # Form for adding a task
-    return """
-    <h2>Add Task</h2>
-    <form method="POST">
-        <label for="task_name">Task Name:</label>
-        <input type="text" id="task_name" name="task_name" required><br>
-        <label for="due_time">Due Time (YYYY-MM-DD HH:MM):</label>
-        <input type="text" id="due_time" name="due_time" placeholder="YYYY-MM-DD HH:MM" required><br>
-        <label for="priority">Priority (1-5):</label>
-        <input type="number" id="priority" name="priority" min="1" max="5" required><br>
-        <button type="submit">Add Task</button>
-    </form>
-    <a href="/">Back to Home</a>
-    """
+    return render_template("add_task.html")
 
 # Route: Show Tasks
 @app.route("/show_tasks", methods=["GET", "POST"])
 def show_tasks():
     mood = request.form.get("mood", "neutral")  # Default mood if not provided
     sorted_tasks = prioritize_tasks(mood)
-
-    # Generate HTML dynamically
-    task_list = "<ul>"
-    for task in sorted_tasks:
-        task_list += f"<li>{task['task']} - Priority: {task['priority']}, Status: {task['status']}</li>"
-    task_list += "</ul>"
-
-    return f"""
-    <h2>Your Tasks</h2>
-    <form method="POST">
-        <label for="mood">How are you feeling today?</label>
-        <input type="text" id="mood" name="mood" placeholder="happy, stressed, relaxed, etc." required>
-        <button type="submit">Sort Tasks</button>
-    </form>
-    {task_list}
-    <a href="/">Back to Home</a>
-    """
+    return render_template("show_tasks.html", tasks=sorted_tasks)
 
 # Route: Update Task Status
-@app.route("/update_task/<task_name>", methods=["GET", "POST"])
-def update_task(task_name):
+@app.route("/update_task/<int:task_id>", methods=["GET", "POST"])
+def update_task(task_id):
+    task = find_task_by_id(task_id)
+    if not task:
+        return "Task not found.", 404
+
     if request.method == "POST":
         new_status = request.form["new_status"]
-        update_task_status(task_name, new_status)
+        task["status"] = new_status
         return redirect(url_for("index"))
     
     # Form for updating task status
-    return f"""
-    <h2>Update Task Status</h2>
-    <form method="POST">
-        <label for="new_status">New Status:</label>
-        <select id="new_status" name="new_status">
-            <option value="Not Started">Not Started</option>
-            <option value="In Progress">In Progress</option>
-            <option value="Completed">Completed</option>
-        </select><br>
-        <button type="submit">Update</button>
-    </form>
-    <a href="/">Back to Home</a>
-    """
+    return render_template("update_task.html", task=task)
 
 # Helper Functions
-def update_task_status(task_name, new_status):
-    for task in tasks:
-        if task["task"] == task_name:
-            task["status"] = new_status
-            break
-
 def prioritize_tasks(mood):
     if mood.lower() in ["stressed", "busy", "overwhelmed"]:
         return sorted(tasks, key=lambda x: x['priority'], reverse=True)
