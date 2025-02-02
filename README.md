@@ -12,7 +12,7 @@
 - Member 3: Elsa Bosco Jose- Muthoot Institute of Technology and Science,Ernakulam
 
 ### Hosted Project Link
-[mention your project hosted project link here]
+
 
 ### Project Description
 Our project helps the user to remind different tasks that the person need to complete in certain days.
@@ -50,14 +50,15 @@ For Software:
 For Software:
 
 # Screenshots (Add at least 3)
-![Screenshot1](Add screenshot 1 here with proper name)
-*Add caption explaining what this shows*
+![Main Program](https://github.com/user-attachments/assets/8847d4bf-7037-499a-988f-71f09671b762)
 
-![Screenshot2](Add screenshot 2 here with proper name)
-*Add caption explaining what this shows*
+![Home Page](https://github.com/user-attachments/assets/6488601c-44c7-43a9-8696-1acefd0e1a67)
 
-![Screenshot3](Add screenshot 3 here with proper name)
-*Add caption explaining what this shows*
+
+![Show tasks](https://github.com/user-attachments/assets/03fc6140-1977-480a-9c93-02878dca983a)
+
+
+
 
 # Diagrams
 ![Workflow](Add your workflow/architecture diagram here)
@@ -69,7 +70,8 @@ For Hardware:
 ![Circuit](Add your circuit diagram here)
 *Add caption explaining connections*
 
-![Schematic](Add your schematic diagram here)
+![Schematic](Add your schematic diagr![Home Page](https://github.com/user-attachments/assets/66f8ad23-9794-4fb3-932c-5c87742e7763)
+am here)
 *Add caption explaining the schematic*
 
 # Build Photos
