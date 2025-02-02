@@ -1,32 +1,32 @@
 # Task_Reminder
-# [Project Name] 🎯
+# TASK REMAINDER 🎯
 
 
 ## Basic Details
-### Team Name: [Name]
+### Team Name: TECH TITANS
 
 
 ### Team Members
-- Member 1: [Name] - [College]
-- Member 2: [Name] - [College]
-- Member 3: [Name] - [College]
+- Member 1: Maria Johnson - Muthoot Institute of Technology and Science,Ernakulam
+- Member 2: Ethna Joy - Muthoot Institute of Technology and Science,Ernakulam
+- Member 3: Elsa Bosco Jose- Muthoot Institute of Technology and Science,Ernakulam
 
 ### Hosted Project Link
 [mention your project hosted project link here]
 
 ### Project Description
-[2-3 lines about what your project does]
+Our project helps the user to remind different tasks that the person need to complete in certain days.
 
 ### The Problem statement
-[What ridiculous problem are you solving?]
+In this current scenerio, people face difficulties to remember different deadlines where our task reminder helps to organize and prioritize tasks.
 
 ### The Solution
-[How are you solving it? Keep it fun!]
+We planned to solve this problem systematically by giving timely notifications and  prioritize tasks according to the mood of the user .  
 
 ## Technical Details
 ### Technologies/Components Used
 For Software:
-- [Languages used]
+- Python
 - [Frameworks used]
 - [Libraries used]
 - [Tools used]
@@ -39,7 +39,9 @@ For Hardware:
 ### Implementation
 For Software:
 # Installation
-[commands]
+  Python
+  GitHub
+  VS Code
 
 # Run
 [commands]
