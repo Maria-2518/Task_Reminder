@@ -1,0 +1,19 @@
+from flask import Flask, render_template, jsonify, request, session
+
+app = Flask(__name__)
+
+app.secret_key = 'your_secret_key'
+
+@app.route('/')
+def index():
+    focus_mode = session.get('focus_mode', False)
+    return render_template('index.html', focus_mode=focus_mode)
+
+@app.route('/toggle_focus', methods=['POST'])
+def toggle_focus():
+    focus_mode = session.get('focus_mode', False)
+    session['focus_mode'] = not focus_mode
+    return jsonify({"focus_mode": not focus_mode})
+
+if __name__ == '__main__':
+    app.run(debug=True)
